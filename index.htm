@@ -7,7 +7,13 @@ function update() {
   xhr.send();
   xhr.addEventListener("load", function (e) {
     var ret = JSON.parse(xhr.responseText);
-    statusDiv.className = (ret.status) ? "open" : "closed";
+    if (ret.status) {
+      statusDiv.className = "open";
+      document.title = "Caledonian Road Tube is Open";
+    } else {
+      statusDiv.className = "closed";
+      document.title = "Caledonian Road Tube is Closed";
+    }
   });
 }
 window.onload = function () {
